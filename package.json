@@ -11,7 +11,9 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.42.1",
+    "react-jwt": "^1.1.8",
     "vite-jsconfig-paths": "^2.0.1",
     "wouter": "^2.10.0-alpha.4"
   },
