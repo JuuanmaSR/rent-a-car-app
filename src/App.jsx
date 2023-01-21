@@ -7,6 +7,8 @@ function App() {
     <div className="App">
           <LoginForm/>      
     </div>
+    <UserContextProvider>
+    </UserContextProvider>
   )
 }
 
