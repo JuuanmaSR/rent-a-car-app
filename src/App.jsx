@@ -8,6 +8,7 @@ function App() {
           <LoginForm/>      
     </div>
     <UserContextProvider>
+        <Header />
     </UserContextProvider>
   )
 }
