@@ -4,6 +4,7 @@ import { UserContextProvider } from 'context/UserContext'
 
 import Header from 'components/Header/Header'
 import Home from 'pages/Home/Home'
+import AdminPanel from 'pages/AdminPanel/AdminPanel'
 
 import './App.css'
 
@@ -14,6 +15,7 @@ function App() {
         <Header />
         <section className="App-content">
           <Route component={Home} path="/" />
+          <Route component={AdminPanel} path="/admin" />
         </section>
       </div>
     </UserContextProvider>
