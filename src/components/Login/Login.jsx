@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useLocation } from 'wouter'
 import useUser from 'hooks/useUser'
 import './styles.css'
 
 const LoginForm = () => {
+  const [_, navigate] = useLocation()
   const {
     register,
     handleSubmit,
     formState: { errors },
+    s,
   } = useForm()
+
   const { login: loginService, isLogged, isLoginLoading, hasLoginMessage } = useUser()
+
+  useEffect(() => {
+    if (isLogged) {
+      const timeout = setTimeout(() => {
+        navigate('/admin')
+      }, 3000)
+      return () => clearTimeout(timeout)
+    }
+  }, [isLogged, navigate])
 
   const onSubmit = (values) => {
     loginService(values)
