@@ -2,9 +2,12 @@ import { useCallback, useContext, useState } from 'react'
 import { useJwt } from 'react-jwt'
 import loginService from 'services/login'
 import UserContext from 'context/UserContext'
+import { useLocation } from 'wouter'
+
 const useUser = () => {
   const { jwt, setJwt } = useContext(UserContext)
   const { decodedToken } = useJwt(jwt)
+  const [_, navigate] = useLocation()
 
   const [loginState, setLoginState] = useState({ loading: false, error: false, message: null })
 
@@ -34,8 +37,12 @@ const useUser = () => {
   )
 
   const logout = useCallback(() => {
-    document.cookie = `token= ; max-age=0`
+    document.cookie = `token= ; Max-Age=0`
     setJwt(null)
+    const timeout = setTimeout(() => {
+      navigate('/')
+    }, 2000)
+    return () => clearTimeout(timeout)
   }, [setJwt])
 
   return {
