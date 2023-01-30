@@ -5,7 +5,7 @@ import UserContext from 'context/UserContext'
 import { useLocation } from 'wouter'
 
 const useUser = () => {
-  const { jwt, setJwt } = useContext(UserContext)
+  const { jwt, setJwt, customers, setCustomers } = useContext(UserContext)
   const { decodedToken } = useJwt(jwt)
   const [_, navigate] = useLocation()
 
@@ -37,7 +37,7 @@ const useUser = () => {
   )
 
   const logout = useCallback(() => {
-    document.cookie = `token= ; Max-Age=0`
+    document.cookie = `token=; Max-Age=0`
     setJwt(null)
     const timeout = setTimeout(() => {
       navigate('/')
@@ -52,6 +52,7 @@ const useUser = () => {
     hasLoginMessage: loginState.message,
     isLogged: Boolean(jwt),
     user: decodedToken,
+    customers,
   }
 }
 
