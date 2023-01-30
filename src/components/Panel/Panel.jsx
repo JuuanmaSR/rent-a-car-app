@@ -11,14 +11,19 @@ const Panel = () => {
           title="Alquileres"
           description="Gestion de alquileres"
           key="alquileres"
-          urlModule=""
+          urlModule="alquileres"
         />
-        <PanelItem title="Clientes" description="Gestion de clientes" key="clientes" urlModule="" />
+        <PanelItem
+          title="Clientes"
+          description="Gestion de clientes"
+          key="clientes"
+          urlModule="clientes"
+        />
         <PanelItem
           title="Vehiculos"
           description="Gestion de vehiculos"
           key="vehiculos"
-          urlModule=""
+          urlModule="vehiculos"
         />
       </div>
     </>
