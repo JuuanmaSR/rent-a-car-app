@@ -10,7 +10,6 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    s,
   } = useForm()
 
   const { login: loginService, isLogged, isLoginLoading, hasLoginMessage } = useUser()
@@ -22,7 +21,7 @@ const LoginForm = () => {
       }, 3000)
       return () => clearTimeout(timeout)
     }
-  }, [isLogged, navigate])
+  }, [isLogged])
 
   const onSubmit = (values) => {
     loginService(values)
