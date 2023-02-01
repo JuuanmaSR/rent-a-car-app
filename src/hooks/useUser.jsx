@@ -1,8 +1,9 @@
 import { useCallback, useContext, useState } from 'react'
+import { useLocation } from 'wouter'
 import { useJwt } from 'react-jwt'
 import loginService from 'services/login'
+import addCustomerService from 'services/addCustomer'
 import UserContext from 'context/UserContext'
-import { useLocation } from 'wouter'
 
 const useUser = () => {
   const { jwt, setJwt, customers, setCustomers } = useContext(UserContext)
@@ -45,6 +46,10 @@ const useUser = () => {
     return () => clearTimeout(timeout)
   }, [setJwt])
 
+  const addCustomer = useCallback((formData) => {
+    addCustomerService({ data: formData, jwt })
+  })
+
   return {
     login,
     logout,
@@ -53,6 +58,7 @@ const useUser = () => {
     isLogged: Boolean(jwt),
     user: decodedToken,
     customers,
+    addCustomer,
   }
 }
 
