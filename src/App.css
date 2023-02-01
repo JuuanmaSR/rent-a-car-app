@@ -10,3 +10,8 @@
   font-size: calc(10px + 2vmin);
   margin-top: 10vh;
 }
+
+input {
+  padding: 1rem 2rem;
+  margin: 2vh;
+}
