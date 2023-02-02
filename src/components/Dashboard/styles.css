@@ -13,6 +13,7 @@
   grid-template-columns: 0.7fr 3fr;
   grid-auto-rows: 1fr 4fr;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 10vh;
 }
 
 .header {

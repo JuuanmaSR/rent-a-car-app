@@ -11,7 +11,7 @@
 }
 .table-header {
   position: sticky;
-  top: 0;
+  top: -12px;
 }
 .table-header th {
   height: 6vh;
