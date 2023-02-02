@@ -2,12 +2,13 @@ import useUser from 'hooks/useUser'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'wouter'
+import Alert from 'components/Alert/Alert'
 import './styles.css'
 
 const CustomerForm = () => {
   const [_, navigate] = useLocation()
-  const { isLogged, addCustomer, isAddCustomerLoading, hasAddCustomerMessage, isCustomerCreated } =
-    useUser()
+  const { isLogged, addCustomer, customerState } = useUser()
+  const { loading, hasMessage, successfulAction } = customerState
   const {
     register,
     handleSubmit,
@@ -19,13 +20,13 @@ const CustomerForm = () => {
     if (!isLogged) {
       navigate('/')
     }
-    if (isCustomerCreated) {
+    if (successfulAction) {
       const timeout = setTimeout(() => {
         navigate('/admin/clientes')
       }, 3000)
       return () => clearTimeout(timeout)
     }
-  }, [isLogged, isCustomerCreated])
+  }, [isLogged, successfulAction])
 
   useEffect(() => {
     setFocus('firstName')
@@ -37,7 +38,7 @@ const CustomerForm = () => {
 
   return (
     <>
-      <div className={hasAddCustomerMessage ? 'form-container has-message' : 'form-container'}>
+      <div className={hasMessage.value ? 'form-container has-message' : 'form-container'}>
         <form className="customer-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="input-container">
             <input
@@ -183,12 +184,18 @@ const CustomerForm = () => {
           <input className="submit-button" type="submit" />
         </form>
 
-        <div
-          className={
-            hasAddCustomerMessage || isAddCustomerLoading ? 'message-container' : 'is-hidden'
-          }
-        >
-          {hasAddCustomerMessage && <p>{hasAddCustomerMessage}</p>}
+        <div className={hasMessage.value || loading ? 'message-container' : 'is-hidden'}>
+          {hasMessage.message.neutral && (
+            <Alert>
+              <p>{hasMessage.message.neutral}</p>
+            </Alert>
+          )}
+          {hasMessage.message.failure && (
+            <Alert severity="error" message={hasMessage.message.failure} />
+          )}
+          {hasMessage.message.successful && (
+            <Alert severity="success" message={hasMessage.message.successful} />
+          )}
         </div>
       </div>
     </>
