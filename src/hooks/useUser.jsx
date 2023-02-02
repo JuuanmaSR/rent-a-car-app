@@ -11,6 +11,11 @@ const useUser = () => {
   const [_, navigate] = useLocation()
 
   const [loginState, setLoginState] = useState({ loading: false, error: false, message: null })
+  const [customerState, setCustomerState] = useState({
+    loading: false,
+    hasMessage: { value: false, message: { successful: false, failure: false, neutral: false } },
+    successfulAction: false,
+  })
 
   const login = useCallback(
     ({ email, password }) => {
@@ -47,7 +52,44 @@ const useUser = () => {
   }, [setJwt])
 
   const addCustomer = useCallback((formData) => {
+    setCustomerState({
+      loading: true,
+      hasMessage: {
+        value: true,
+        message: { ...{}, neutral: 'Verificando datos...' },
+      },
+      isCreated: false,
+    })
     addCustomerService({ data: formData, jwt })
+      .then((res) => {
+        if (res.statusCode === 500) {
+          setCustomerState({
+            loading: false,
+            hasMessage: {
+              value: true,
+              message: { ...{}, neutral: false, failure: 'El cliente no pudo ser creado' },
+            },
+            successfulAction: false,
+          })
+        }
+        if (res.customer) {
+          setCustomerState({
+            loading: false,
+            hasMessage: {
+              value: true,
+              message: {
+                neutral: false,
+                failure: false,
+                successful: 'El cliente fue creado con exito',
+              },
+            },
+            successfulAction: true,
+          })
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   })
 
   return {
@@ -59,6 +101,7 @@ const useUser = () => {
     user: decodedToken,
     customers,
     addCustomer,
+    customerState,
   }
 }
 

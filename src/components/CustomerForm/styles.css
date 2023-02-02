@@ -90,13 +90,5 @@
   padding-right: 5vw;
 }
 .message-container {
-  background-color: var(--theme-body-bg);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
   margin: auto;
-  color: var(--theme-secondary-color);
-}
-
-.message-container p {
-  padding: 10px;
 }
