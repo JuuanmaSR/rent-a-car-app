@@ -1,0 +1,102 @@
+.is-hidden {
+  display: none;
+}
+.form-container {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  background-color: var(--theme-primary-color);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+.customer-form {
+  display: grid;
+  grid-template-columns: 50vh 50vh;
+  grid-auto-rows: 12vh;
+  padding: 5vh;
+  gap: 12px;
+}
+
+.customer-input {
+  border: 1px solid #d1d1d1;
+  outline: none;
+  background-color: var(--theme-body-bg);
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.18s ease-out;
+}
+.customer-input:hover {
+  box-shadow: 0px 15px 20px rgba(14, 31, 29, 0.4);
+  transform: translateY(-2px);
+}
+.customer-input:focus {
+  color: #4b515d;
+  border: 1px solid #b8b6b6;
+  box-shadow: 0px 15px 20px rgba(14, 31, 29, 0.4);
+  transform: translateY(-3px);
+}
+
+.submit-button {
+  position: relative;
+  color: var(--theme-secondary-color);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 2.5px;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  background-color: var(--theme-body-bg);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  text-decoration: none;
+  border-radius: 45px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.submit-button:hover {
+  background-color: var(--theme-primary-color);
+  color: var(--theme-body-bg);
+  box-shadow: 0px 15px 20px rgba(14, 31, 29, 0.4);
+  transform: translateY(-7px);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.error-message {
+  background-color: #f34747;
+  border-radius: 10px;
+  position: absolute;
+  color: var(--theme-body-bg);
+  top: -20px;
+  left: 20px;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+.has-error,
+.has-error:focus {
+  border: 3px solid #f34747;
+}
+
+.has-message {
+  grid-template-columns: 2fr 0.8fr;
+  margin: 0 50px;
+  padding-right: 5vw;
+}
+.message-container {
+  background-color: var(--theme-body-bg);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  margin: auto;
+  color: var(--theme-secondary-color);
+}
+
+.message-container p {
+  padding: 10px;
+}
