@@ -3,6 +3,9 @@ import { useLocation } from 'wouter'
 import { useJwt } from 'react-jwt'
 import loginService from 'services/login'
 import addCustomerService from 'services/addCustomer'
+import deleteCustomerService from 'services/deleteCustomer'
+import updateCustomerService from 'services/updateCustomer'
+
 import UserContext from 'context/UserContext'
 
 const useUser = () => {
@@ -92,6 +95,14 @@ const useUser = () => {
       })
   })
 
+  const deleteCustomer = useCallback((id) => {
+    deleteCustomerService({ jwt, id }).then((res) => console.log(res))
+  })
+
+  const updateCustomer = useCallback(({ newData }) => {
+    updateCustomerService({ jwt, newData }).then((res) => console.log(res))
+  })
+
   return {
     login,
     logout,
@@ -101,6 +112,8 @@ const useUser = () => {
     user: decodedToken,
     customers,
     addCustomer,
+    deleteCustomer,
+    updateCustomer,
     customerState,
   }
 }

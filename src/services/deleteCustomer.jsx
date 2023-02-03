@@ -1,14 +1,13 @@
 const ENDPOINT = 'http://localhost:3000'
 
-const addCustomer = async ({ data, jwt }) => {
+const deleteCustomer = async ({ jwt, id }) => {
   try {
-    const res = await fetch(`${ENDPOINT}/customers/create`, {
-      method: 'POST',
+    const res = await fetch(`${ENDPOINT}/customers/delete/${id}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${jwt}`,
       },
-      body: JSON.stringify(data),
     })
     const response = await res.json()
     return response
@@ -17,4 +16,4 @@ const addCustomer = async ({ data, jwt }) => {
   }
 }
 
-export default addCustomer
+export default deleteCustomer
