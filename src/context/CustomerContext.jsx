@@ -6,7 +6,7 @@ const Context = React.createContext({})
 
 export function CustomerContextProvider({ children }) {
   const { jwt } = useContext(UserContext)
-  const [customers, setCustomers] = useState([])
+  const [customers, setCustomers] = useState()
   useEffect(() => {
     getCustomers({ jwt }).then((customers) => setCustomers(customers))
   }, [jwt])
