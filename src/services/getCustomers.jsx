@@ -12,9 +12,7 @@ const getCustomer = async ({ jwt }) => {
     const { customers } = await res.json()
     return customers
   } catch (error) {
-    return {
-      message: 'A ocurrido un error',
-    }
+    console.error(error)
   }
 }
 

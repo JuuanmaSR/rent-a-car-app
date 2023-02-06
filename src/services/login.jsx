@@ -11,9 +11,7 @@ const login = async ({ email, password }) => {
     })
     return await res.json()
   } catch (error) {
-    return {
-      message: 'A ocurrido un error',
-    }
+    console.error(error)
   }
 }
 

@@ -12,7 +12,7 @@ const deleteCustomer = async ({ jwt, id }) => {
     const response = await res.json()
     return response
   } catch (error) {
-    return { message: 'A ocurrido un error' }
+    console.error(error)
   }
 }
 
