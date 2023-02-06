@@ -10,6 +10,7 @@ export function CustomerContextProvider({ children }) {
   useEffect(() => {
     getCustomers({ jwt }).then((customers) => setCustomers(customers))
   }, [jwt])
+
   return <Context.Provider value={{ customers, setCustomers }}>{children}</Context.Provider>
 }
 
