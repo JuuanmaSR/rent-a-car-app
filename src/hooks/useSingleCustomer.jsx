@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import UserContext from 'context/UserContext'
 import getSingleCustomerSerive from 'services/getSingleCustomer'
-import useCustomer from './useCustomer'
+import useCustomer from 'hooks/useCustomer'
 
 const useSingleCustomer = ({ id }) => {
   const { jwt } = useContext(UserContext)
@@ -33,7 +33,7 @@ const useSingleCustomer = ({ id }) => {
           setCustomerState({ loading: false, hasError: true })
         })
     }
-  }, [customer, id, jwt])
+  }, [id, customer])
 
   return { customer, customerState }
 }
