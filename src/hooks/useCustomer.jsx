@@ -2,25 +2,18 @@ import { useContext, useEffect, useCallback, useState } from 'react'
 import CustomerContext from 'context/CustomerContext'
 import UserContext from 'context/UserContext'
 
-import getCustomers from 'services/getCustomers'
 import addCustomerService from 'services/addCustomer'
 import updateCustomerService from 'services/updateCustomer'
 import deleteCustomerService from 'services/deleteCustomer'
 
 const useCustomer = () => {
   const { jwt } = useContext(UserContext)
-  const { customers, setCustomers } = useContext(CustomerContext)
+  const { customers } = useContext(CustomerContext)
   const [customerState, setCustomerState] = useState({
     loading: false,
     hasMessage: { value: false, message: { successful: false, failure: false, neutral: false } },
     successfulAction: false,
   })
-
-  useEffect(() => {
-    getCustomers({ jwt }).then((customers) => {
-      setCustomers(customers)
-    })
-  }, [jwt])
 
   const addCustomer = useCallback(
     (formData) => {
