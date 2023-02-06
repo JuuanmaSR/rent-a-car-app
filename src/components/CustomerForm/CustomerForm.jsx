@@ -56,10 +56,13 @@ const CustomerForm = ({ customer }) => {
     <>
       <div className={hasMessage.value ? 'form-container has-message' : 'form-container'}>
         <form className="customer-form" onSubmit={handleSubmit(onSubmit)}>
-          {customer && <input value={customer.id} {...register('id')} hidden={true} />}
+          {customer && (
+            <input type="number" value={customer.id} {...register('id')} hidden={true} />
+          )}
           <div className="input-container">
             <input
               className={errors.firstName ? 'customer-input has-error' : 'customer-input'}
+              type="text"
               placeholder="Nombre"
               {...register('firstName', {
                 required: 'Completa este campo',
@@ -76,6 +79,7 @@ const CustomerForm = ({ customer }) => {
           <div className="input-container">
             <input
               className={errors.lastName ? 'customer-input has-error' : 'customer-input'}
+              type="text"
               placeholder="Apellido"
               {...register('lastName', {
                 required: 'Completa este campo',
@@ -109,6 +113,7 @@ const CustomerForm = ({ customer }) => {
           <div className="input-container">
             <input
               className={errors.documentType ? 'customer-input has-error' : 'customer-input'}
+              type="text"
               placeholder="Tipo de documento"
               list="document-type"
               {...register('documentType', {
@@ -125,6 +130,7 @@ const CustomerForm = ({ customer }) => {
           <div className="input-container">
             <input
               className={errors.document ? 'customer-input has-error' : 'customer-input'}
+              type="text"
               placeholder="Documento"
               {...register('document', { required: 'Completa este campo' })}
             />
@@ -135,6 +141,7 @@ const CustomerForm = ({ customer }) => {
           <div className="input-container">
             <input
               className={errors.phoneNumber ? 'customer-input has-error' : 'customer-input'}
+              type="text"
               placeholder="Telefono"
               {...register('phoneNumber', {
                 required: 'Completa este campo',
@@ -151,6 +158,7 @@ const CustomerForm = ({ customer }) => {
           <div className="input-container">
             <input
               className={errors.address ? 'customer-input has-error' : 'customer-input'}
+              type="text"
               placeholder="Dirección"
               {...register('address', {
                 required: 'Completa este campo',
@@ -182,6 +190,7 @@ const CustomerForm = ({ customer }) => {
           <div className="input-container">
             <input
               className={errors.nationality ? 'customer-input has-error' : 'customer-input'}
+              type="text"
               placeholder="Nacionalidad"
               {...register('nationality', {
                 required: 'Completa este campo',
