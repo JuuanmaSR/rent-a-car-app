@@ -8,7 +8,7 @@ import deleteCustomerService from 'services/deleteCustomer'
 
 const useCustomer = () => {
   const { jwt } = useContext(UserContext)
-  const { customers } = useContext(CustomerContext)
+  const { customers, setCustomers } = useContext(CustomerContext)
   const [customerState, setCustomerState] = useState({
     loading: false,
     hasMessage: { value: false, message: { successful: false, failure: false, neutral: false } },
@@ -38,6 +38,7 @@ const useCustomer = () => {
             })
           }
           if (res.customer) {
+            setCustomers((prevCustomers) => prevCustomers.concat([res.customer]))
             setCustomerState({
               loading: false,
               hasMessage: {
