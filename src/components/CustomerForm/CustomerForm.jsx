@@ -1,45 +1,62 @@
-import useUser from 'hooks/useUser'
-import { useEffect } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'wouter'
 import Alert from 'components/Alert/Alert'
+import useUser from 'hooks/useUser'
 import './styles.css'
+import useCustomer from 'hooks/useCustomer'
 
-const CustomerForm = () => {
+const CustomerForm = ({ customer }) => {
+  const { addCustomer, customerState, updateCustomer } = useCustomer()
   const [_, navigate] = useLocation()
-  const { isLogged, addCustomer, customerState } = useUser()
   const { loading, hasMessage, successfulAction } = customerState
   const {
     register,
     handleSubmit,
     formState: { errors },
     setFocus,
-  } = useForm()
+  } = useForm({
+    defaultValues: useMemo(() => {
+      if (customer) {
+        return {
+          firstName: customer.firstName,
+          lastName: customer.lastName,
+          email: customer.email,
+          documentType: customer.documentType,
+          document: customer.document,
+          phoneNumber: customer.phoneNumber,
+          address: customer.address,
+          dateOfBirth: customer.dateOfBirth,
+          nationality: customer.nationality,
+        }
+      }
+      return null
+    }),
+  })
 
   useEffect(() => {
-    if (!isLogged) {
-      navigate('/')
-    }
     if (successfulAction) {
       const timeout = setTimeout(() => {
         navigate('/admin/clientes')
       }, 3000)
       return () => clearTimeout(timeout)
     }
-  }, [isLogged, successfulAction])
-
-  useEffect(() => {
     setFocus('firstName')
-  }, [setFocus])
+  }, [setFocus, successfulAction])
 
-  const onSubmit = (values) => {
-    addCustomer(values)
+  const onSubmit = (values, event) => {
+    event.preventDefault()
+    if (values.id) {
+      updateCustomer({ newData: values })
+    } else {
+      addCustomer(values)
+    }
   }
-
   return (
     <>
       <div className={hasMessage.value ? 'form-container has-message' : 'form-container'}>
         <form className="customer-form" onSubmit={handleSubmit(onSubmit)}>
+          {customer && <input value={customer.id} {...register('id')} hidden={true} />}
           <div className="input-container">
             <input
               className={errors.firstName ? 'customer-input has-error' : 'customer-input'}
