@@ -2,23 +2,15 @@ import { useCallback, useContext, useState } from 'react'
 import { useLocation } from 'wouter'
 import { useJwt } from 'react-jwt'
 import loginService from 'services/login'
-import addCustomerService from 'services/addCustomer'
-import deleteCustomerService from 'services/deleteCustomer'
-import updateCustomerService from 'services/updateCustomer'
 
 import UserContext from 'context/UserContext'
 
 const useUser = () => {
-  const { jwt, setJwt, customers, setCustomers } = useContext(UserContext)
+  const { jwt, setJwt } = useContext(UserContext)
   const { decodedToken } = useJwt(jwt)
   const [_, navigate] = useLocation()
 
   const [loginState, setLoginState] = useState({ loading: false, error: false, message: null })
-  const [customerState, setCustomerState] = useState({
-    loading: false,
-    hasMessage: { value: false, message: { successful: false, failure: false, neutral: false } },
-    successfulAction: false,
-  })
 
   const login = useCallback(
     ({ email, password }) => {
@@ -54,55 +46,6 @@ const useUser = () => {
     return () => clearTimeout(timeout)
   }, [setJwt])
 
-  const addCustomer = useCallback((formData) => {
-    setCustomerState({
-      loading: true,
-      hasMessage: {
-        value: true,
-        message: { ...{}, neutral: 'Verificando datos...' },
-      },
-      isCreated: false,
-    })
-    addCustomerService({ data: formData, jwt })
-      .then((res) => {
-        if (res.statusCode === 500) {
-          setCustomerState({
-            loading: false,
-            hasMessage: {
-              value: true,
-              message: { ...{}, neutral: false, failure: 'El cliente no pudo ser creado' },
-            },
-            successfulAction: false,
-          })
-        }
-        if (res.customer) {
-          setCustomerState({
-            loading: false,
-            hasMessage: {
-              value: true,
-              message: {
-                neutral: false,
-                failure: false,
-                successful: 'El cliente fue creado con exito',
-              },
-            },
-            successfulAction: true,
-          })
-        }
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  })
-
-  const deleteCustomer = useCallback((id) => {
-    deleteCustomerService({ jwt, id }).then((res) => console.log(res))
-  })
-
-  const updateCustomer = useCallback(({ newData }) => {
-    updateCustomerService({ jwt, newData }).then((res) => console.log(res))
-  })
-
   return {
     login,
     logout,
@@ -110,11 +53,6 @@ const useUser = () => {
     hasLoginMessage: loginState.message,
     isLogged: Boolean(jwt),
     user: decodedToken,
-    customers,
-    addCustomer,
-    deleteCustomer,
-    updateCustomer,
-    customerState,
   }
 }
 
