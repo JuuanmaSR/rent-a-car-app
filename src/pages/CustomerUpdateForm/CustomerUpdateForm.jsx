@@ -7,6 +7,7 @@ import useSingleCustomer from 'hooks/useSingleCustomer'
 
 const CustomerUpdateForm = ({ params }) => {
   const { isLogged } = useUser()
+  const { customer, customerState } = useSingleCustomer({ id: params.id })
   const [_, navigate] = useLocation()
   useEffect(() => {
     if (!isLogged) {
