@@ -6,6 +6,7 @@ import useCustomer from 'hooks/useCustomer'
 
 import CustomersTable from 'components/CustomersTable/CustomerTable'
 import Dashboard from 'components/Dashboard/Dashboard'
+import Spinner from 'components/Spinner/Spinner'
 
 const CustomerDashboard = () => {
   const { isLogged } = useUser()
@@ -25,7 +26,7 @@ const CustomerDashboard = () => {
         {customers ? (
           <CustomersTable customers={customers} deleteCustomer={deleteCustomer} />
         ) : (
-          <h2>No se encontraron clientes</h2>
+          <Spinner />
         )}
       </Dashboard>
     </>
