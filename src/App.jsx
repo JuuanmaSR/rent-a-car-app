@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Route, Switch } from 'wouter'
+import { Route, Switch } from 'wouter'
 import { UserContextProvider } from 'context/UserContext'
 import { CustomerContextProvider } from 'context/CustomerContext'
 
@@ -10,6 +10,7 @@ import AdminPanel from 'pages/AdminPanel/AdminPanel'
 import CustomerDashboard from 'pages/CustomerDashboard/CustomerDashboard'
 import CustomerAddForm from 'pages/CustomerAddForm/CustomerAddForm'
 import CustomerUpdateForm from 'pages/CustomerUpdateForm/CustomerUpdateForm'
+import CustomerDetail from 'pages/CustomerDetail/CustomerDetail'
 
 import CarDashboard from 'pages/CarDashboard/CarDashboard'
 import RentDashboard from 'pages/RentDashboard/RentDashboard'
@@ -29,6 +30,7 @@ function App() {
               <Route component={CustomerDashboard} path="/admin/clientes" />
               <Route path="/admin/clientes/agregar" component={CustomerAddForm} />
               <Route path="/admin/clientes/editar/:id" component={CustomerUpdateForm} />
+              <Route path="/admin/clientes/detail/:id" component={CustomerDetail} />
               <Route component={CarDashboard} path="/admin/vehiculos" />
               <Route component={RentDashboard} path="/admin/alquileres" />
             </Switch>
