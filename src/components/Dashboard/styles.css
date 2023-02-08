@@ -4,7 +4,7 @@
 
 .container {
   display: grid;
-  margin: 10px;
+  margin: 8vh 4vh;
   border-radius: 5px;
   letter-spacing: 2px;
   grid-template-areas:
@@ -13,7 +13,6 @@
   grid-template-columns: 0.7fr 3fr;
   grid-auto-rows: 1fr 4fr;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin-top: 10vh;
 }
 
 .header {
@@ -46,6 +45,8 @@
   grid-area: nav;
   border-right: 20px solid var(--theme-primary-color);
   background: linear-gradient(90deg, var(--theme-primary-color), var(--theme-body-bg) 80%);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .add-button {
@@ -64,6 +65,7 @@
   text-decoration: none;
   border-radius: 45px;
   transition: all 0.3s ease 0s;
+  cursor: pointer;
 }
 
 .add-button:hover,
