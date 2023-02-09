@@ -1,3 +1,4 @@
+import Spinner from 'components/Spinner/Spinner'
 import './styles.css'
 
 const Alert = ({ severity, message, children }) => {
@@ -15,7 +16,7 @@ const Alert = ({ severity, message, children }) => {
     return (
       <>
         <div className="alert-container error">
-          <h2 className="title">Fracaso!</h2>
+          <h2 className="title">Error!</h2>
           <p>{message}</p>
         </div>
       </>
@@ -24,7 +25,10 @@ const Alert = ({ severity, message, children }) => {
 
   return (
     <>
-      <div className="alert-container">{children}</div>
+      <div className="alert-container">
+        {children}
+        <Spinner />
+      </div>
     </>
   )
 }
