@@ -3,10 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
   background-color: var(--theme-body-bg);
   padding: 10px;
+  max-height: 200px;
 }
 
 .success {
@@ -21,4 +23,23 @@
 
 .alert-container h2 {
   margin-bottom: 0;
+}
+
+.alert-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease 0s;
+  height: 30px;
+  width: 30px;
+}
+
+.alert-button:hover {
+  background-color: var(--theme-secondary-color);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: translateY(-3px);
 }

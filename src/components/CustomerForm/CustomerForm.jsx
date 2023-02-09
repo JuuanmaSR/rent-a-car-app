@@ -2,14 +2,15 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'wouter'
 import Alert from 'components/Alert/Alert'
-import useUser from 'hooks/useUser'
-import './styles.css'
 import useCustomer from 'hooks/useCustomer'
+import ModalPortal from 'components/Modal/Modal'
+import './styles.css'
 
 const CustomerForm = ({ customer }) => {
   const { addCustomer, customerState, updateCustomer } = useCustomer()
   const [_, navigate] = useLocation()
   const { loading, hasMessage, successfulAction } = customerState
+  const [showModal, setShowModal] = useState(true)
   const {
     register,
     handleSubmit,
@@ -52,9 +53,14 @@ const CustomerForm = ({ customer }) => {
       addCustomer(values)
     }
   }
+
+  const handleClose = () => {
+    setShowModal(false)
+  }
+
   return (
     <>
-      <div className={hasMessage.value ? 'form-container has-message' : 'form-container'}>
+      <div className="form-container">
         <form className="customer-form" onSubmit={handleSubmit(onSubmit)}>
           {customer && (
             <input type="number" value={customer.id} {...register('id')} hidden={true} />
@@ -207,23 +213,28 @@ const CustomerForm = ({ customer }) => {
             )}
           </div>
 
-          <input className="submit-button" type="submit" />
+          <input className="submit-button" type="submit" onClick={() => setShowModal(true)} />
         </form>
-
-        <div className={hasMessage.value || loading ? 'message-container' : 'is-hidden'}>
-          {hasMessage.message.neutral && (
-            <Alert>
-              <p>{hasMessage.message.neutral}</p>
-            </Alert>
-          )}
-          {hasMessage.message.failure && (
-            <Alert severity="error" message={hasMessage.message.failure} />
-          )}
-          {hasMessage.message.successful && (
-            <Alert severity="success" message={hasMessage.message.successful} />
-          )}
-        </div>
       </div>
+
+      {loading && (
+        <ModalPortal hasButton={false}>
+          <Alert>
+            <p>{hasMessage.message.neutral}</p>
+          </Alert>
+        </ModalPortal>
+      )}
+
+      {hasMessage.message.failure && showModal && (
+        <ModalPortal onClose={handleClose}>
+          <Alert severity={'error'} message={hasMessage.message.failure} />
+        </ModalPortal>
+      )}
+      {hasMessage.message.successful && (
+        <ModalPortal hasButton={false}>
+          <Alert severity={'success'} message={hasMessage.message.successful} />
+        </ModalPortal>
+      )}
     </>
   )
 }
