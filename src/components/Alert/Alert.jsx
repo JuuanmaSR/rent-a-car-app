@@ -1,12 +1,12 @@
 import Spinner from 'components/Spinner/Spinner'
 import './styles.css'
 
-const Alert = ({ severity, message, children }) => {
+const Alert = ({ severity, message, title, children }) => {
   if (severity === 'success') {
     return (
       <>
         <div className="alert-container success">
-          <h2 className="title">Exito!</h2>
+          <h2 className="title">{title ? title : 'Exito'}</h2>
           <p>{message}</p>
         </div>
       </>
@@ -16,8 +16,19 @@ const Alert = ({ severity, message, children }) => {
     return (
       <>
         <div className="alert-container error">
-          <h2 className="title">Error!</h2>
+          <h2 className="title">{title ? title : 'Error'}</h2>
           <p>{message}</p>
+        </div>
+      </>
+    )
+  }
+
+  if (severity === 'wait') {
+    return (
+      <>
+        <div className="alert-container">
+          {children}
+          <Spinner />
         </div>
       </>
     )
@@ -25,10 +36,7 @@ const Alert = ({ severity, message, children }) => {
 
   return (
     <>
-      <div className="alert-container">
-        {children}
-        <Spinner />
-      </div>
+      <div className="alert-container">{children}</div>
     </>
   )
 }
