@@ -1,14 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useLocation } from 'wouter'
 import Form from 'components/CustomerForm/CustomerForm'
-import useUser from 'hooks/useUser'
-import useSingleCustomer from 'hooks/useSingleCustomer'
 import Spinner from 'components/Spinner/Spinner'
+import useSingleCustomer from 'hooks/useSingleCustomer'
+import useUser from 'hooks/useUser'
+import ModalPortal from 'components/Modal/Modal'
 
 const CustomerUpdateForm = ({ params }) => {
+  const { id } = params
   const { isLogged } = useUser()
-  const { customer, customerState } = useSingleCustomer({ id: params.id })
+  const [showModal, setShowModal] = useState(true)
+  const { customer, customerState } = useSingleCustomer({ id })
   const { hasError, isLoading } = customerState
   const [_, navigate] = useLocation()
   useEffect(() => {
@@ -30,12 +33,21 @@ const CustomerUpdateForm = ({ params }) => {
 
   if (!customer) return null
 
+  const handleClose = () => {
+    setShowModal(false)
+    navigate(`/admin/clientes`)
+  }
+
   return (
     <>
       <Helmet>
         <title>Editar Cliente | Rent a car</title>
       </Helmet>
-      <Form customer={customer} />
+      {showModal && (
+        <ModalPortal onClose={handleClose}>
+          <Form customer={customer} />
+        </ModalPortal>
+      )}
     </>
   )
 }

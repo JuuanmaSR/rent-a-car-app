@@ -1,7 +1,7 @@
 import React from 'react'
+import { useLocation } from 'wouter'
 import customerAvatar from 'assets/customer-avatar.png'
 import './styles.css'
-import { useLocation } from 'wouter'
 
 const CustomerDetail = ({ customer, deleteCustomer }) => {
   const [_, navigate] = useLocation()
