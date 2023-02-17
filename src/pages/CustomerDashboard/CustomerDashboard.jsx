@@ -10,7 +10,7 @@ import Spinner from 'components/Spinner/Spinner'
 
 const CustomerDashboard = () => {
   const { isLogged } = useUser()
-  const { customers, deleteCustomer } = useCustomer()
+  const { customers, deleteCustomer, customerState } = useCustomer()
   const [_, navigate] = useLocation()
   useEffect(() => {
     if (!isLogged) {
@@ -24,7 +24,11 @@ const CustomerDashboard = () => {
       </Helmet>
       <Dashboard title="Clientes" formRoute={'/admin/clientes/agregar'}>
         {customers ? (
-          <CustomersTable customers={customers} deleteCustomer={deleteCustomer} />
+          <CustomersTable
+            customers={customers}
+            deleteCustomer={deleteCustomer}
+            customerState={customerState}
+          />
         ) : (
           <Spinner />
         )}

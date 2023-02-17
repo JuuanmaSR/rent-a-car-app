@@ -219,7 +219,7 @@ const CustomerForm = ({ customer }) => {
 
       {loading && (
         <ModalPortal hasButton={false}>
-          <Alert>
+          <Alert severity={'wait'}>
             <p>{hasMessage.message.neutral}</p>
           </Alert>
         </ModalPortal>
