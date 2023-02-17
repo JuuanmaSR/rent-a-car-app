@@ -36,10 +36,12 @@ const CustomersTable = ({ customers, deleteCustomer, customerState }) => {
   }
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowModal(false)
-    }, 3000)
-    return () => clearTimeout(timeout)
+    if (successfulAction) {
+      const timeout = setTimeout(() => {
+        setShowModal(false)
+      }, 3000)
+      return () => clearTimeout(timeout)
+    }
   }, [successfulAction])
 
   if (confirmOpen) {
