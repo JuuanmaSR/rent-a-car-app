@@ -26,3 +26,33 @@
   background: var(--theme-primary-color);
   color: var(--theme-body-bg);
 }
+
+.table-action-button {
+  padding: 1vh;
+  line-height: 8px;
+  border-radius: 50px;
+  border: 2px solid var(--theme-secondary-color);
+  background-color: var(--theme-body-bg);
+  margin: 0 3px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  color: var(--theme-body-bg);
+  font-size: 15px;
+}
+.table-action-button:hover {
+  box-shadow: 0px 15px 20px rgba(14, 31, 29, 0.4);
+  transform: translateY(-7px);
+}
+
+.info {
+  background-color: #209cee;
+}
+
+.edit {
+  background-color: #48c774;
+}
+
+.delete {
+  background-color: #ff3860;
+}
