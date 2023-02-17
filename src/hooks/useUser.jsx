@@ -12,39 +12,37 @@ const useUser = () => {
 
   const [loginState, setLoginState] = useState({ loading: false, error: false, message: null })
 
-  const login = useCallback(
-    ({ email, password }) => {
-      setLoginState({ loading: true, error: false, message: null })
-      loginService({ email, password })
-        .then((res) => {
-          const { access_token, message } = res
+  const login = ({ email, password }) => {
+    setLoginState({ loading: true, error: false, message: null })
+    loginService({ email, password })
+      .then((res) => {
+        const { access_token, message } = res
 
-          access_token
-            ? (document.cookie = `token=${access_token}; max-age=${
-                60 * 60 * 24
-              }; samesite=strict;secure`)
-            : setLoginState({ loading: false, error: true, message: message })
+        access_token
+          ? (document.cookie = `token=${access_token}; max-age=${
+              60 * 60 * 24
+            }; samesite=strict;secure`)
+          : setLoginState({ loading: false, error: true, message: message })
 
-          loginState.error
-            ? setLoginState({ loading: false, error: true, message })
-            : setLoginState({ loading: false, error: false, message: message })
-          setJwt(access_token)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    },
-    [setJwt],
-  )
+        loginState.error
+          ? setLoginState({ loading: false, error: true, message })
+          : setLoginState({ loading: false, error: false, message: message })
+        setJwt(access_token)
+      })
+      .catch((error) => {
+        setLoginState({ loading: false, error: true, message: error })
+        console.error(error)
+      })
+  }
 
-  const logout = useCallback(() => {
+  const logout = () => {
     document.cookie = `token=; Max-Age=0`
     setJwt(null)
     const timeout = setTimeout(() => {
       navigate('/')
     }, 2000)
     return () => clearTimeout(timeout)
-  }, [setJwt])
+  }
 
   return {
     login,
