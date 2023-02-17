@@ -1,24 +1,3 @@
-/* .modal-container {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(5px);
-  position: fixed;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-}
-
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-} */
-
 .modal,
 .overlay {
   width: 100vw;
@@ -47,6 +26,6 @@
 }
 
 .modal-button {
-  position: absolute;
+  position: absolute !important;
   top: -70px;
 }
