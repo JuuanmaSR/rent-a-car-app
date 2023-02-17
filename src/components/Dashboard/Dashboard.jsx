@@ -1,12 +1,20 @@
+import React from 'react'
 import { Link } from 'wouter'
 import './styles.css'
 
 const Dashboard = ({ children, title, formRoute }) => {
+  const handleRefresh = () => {
+    return window.location.reload(true)
+  }
+
   return (
     <>
       <div className="container">
         <div className="header">
           <h2>{title}</h2>
+          <button className="add-button" onClick={handleRefresh}>
+            Refresh
+          </button>
           <Link className="add-button" to={formRoute}>
             Agregar {title}
           </Link>
@@ -28,4 +36,4 @@ const Dashboard = ({ children, title, formRoute }) => {
   )
 }
 
-export default Dashboard
+export default React.memo(Dashboard)
