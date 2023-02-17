@@ -114,9 +114,24 @@ const CustomersTable = ({ customers, deleteCustomer, customerState }) => {
                 <td>{customer.phoneNumber}</td>
                 <td>{customer.address}</td>
                 <td>
-                  <button onClick={() => handleDetail(customer.id)}>Detalle</button>
-                  <button onClick={() => handleEdit(customer.id)}>Editar</button>
-                  <button onClick={() => handleOpenConfirm(customer.id)}>Eliminar</button>
+                  <button
+                    className="table-action-button info"
+                    onClick={() => handleDetail(customer.id)}
+                  >
+                    <i class="fi fi-br-info"></i>
+                  </button>
+                  <button
+                    className="table-action-button edit"
+                    onClick={() => handleEdit(customer.id)}
+                  >
+                    <i class="fi fi-br-edit-alt"></i>
+                  </button>
+                  <button
+                    className="table-action-button delete"
+                    onClick={() => handleOpenConfirm(customer.id)}
+                  >
+                    <i class="fi fi-br-trash"></i>
+                  </button>
                 </td>
               </tr>
             )
