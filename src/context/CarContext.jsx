@@ -8,7 +8,7 @@ export function CarContextProvider({ children }) {
   const { jwt } = useContext(UserContext)
   const [cars, setCars] = useState()
   useEffect(() => {
-    getCars({ jwt }).then((cars) => setCars(cars))
+    getCars({ jwt }).then(({ cars }) => setCars(cars))
   }, [jwt])
   return <Context.Provider value={{ cars, setCars }}>{children}</Context.Provider>
 }
