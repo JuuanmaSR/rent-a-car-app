@@ -12,6 +12,7 @@ const login = async ({ email, password }) => {
     return await res.json()
   } catch (error) {
     console.error(error)
+    return error
   }
 }
 

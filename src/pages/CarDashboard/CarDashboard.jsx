@@ -1,8 +1,8 @@
-import Dashboard from 'components/Dashboard/Dashboard'
-import useUser from 'hooks/useUser'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useLocation } from 'wouter'
+import Dashboard from 'components/Dashboard/Dashboard'
+import useUser from 'hooks/useUser'
 
 const CarDashboard = () => {
   const { isLogged } = useUser()
@@ -12,6 +12,7 @@ const CarDashboard = () => {
       navigate('/')
     }
   }, [isLogged])
+
   return (
     <>
       <Helmet>

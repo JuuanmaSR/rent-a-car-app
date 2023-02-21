@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useLocation } from 'wouter'
 import { useJwt } from 'react-jwt'
 import loginService from 'services/login'
