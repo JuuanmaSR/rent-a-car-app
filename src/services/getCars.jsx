@@ -9,7 +9,8 @@ const getCars = async ({ jwt }) => {
         Authorization: `Bearer ${jwt}`,
       },
     })
-    return await res.json()
+    const { cars } = await res.json()
+    return cars
   } catch (error) {
     console.error(error)
     return error
