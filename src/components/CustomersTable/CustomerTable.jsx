@@ -28,7 +28,7 @@ const CustomersTable = ({ customers, deleteCustomer, customerState }) => {
   }
 
   const handleDetail = (id) => {
-    navigate(`/admin/clientes/detail/${id}`)
+    navigate(`/admin/clientes/detalle/${id}`)
   }
 
   const handleEdit = (id) => {
