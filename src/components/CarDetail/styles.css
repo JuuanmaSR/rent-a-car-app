@@ -1,0 +1,7 @@
+.car-avatar img {
+  height: 30vh;
+  width: 30vh;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-size: 100% auto;
+}
