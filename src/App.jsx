@@ -15,6 +15,8 @@ import CustomerUpdateForm from 'pages/CustomerUpdateForm/CustomerUpdateForm'
 import CustomerDetail from 'pages/CustomerDetail/CustomerDetail'
 
 import CarDashboard from 'pages/CarDashboard/CarDashboard'
+import CarDetail from 'pages/CarDetail/CarDetail'
+
 import RentDashboard from 'pages/RentDashboard/RentDashboard'
 
 import './App.css'
@@ -33,8 +35,9 @@ function App() {
                 <Route component={CustomerDashboard} path="/admin/clientes" />
                 <Route path="/admin/clientes/agregar" component={CustomerAddForm} />
                 <Route path="/admin/clientes/editar/:id" component={CustomerUpdateForm} />
-                <Route path="/admin/clientes/detail/:id" component={CustomerDetail} />
+                <Route path="/admin/clientes/detalle/:id" component={CustomerDetail} />
                 <Route component={CarDashboard} path="/admin/vehiculos" />
+                <Route path="/admin/vehiculos/detalle/:id" component={CarDetail} />
                 <Route component={RentDashboard} path="/admin/alquileres" />
               </Switch>
             </CustomerContextProvider>

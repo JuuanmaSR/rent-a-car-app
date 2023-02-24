@@ -17,6 +17,10 @@ const CustomerDetail = ({ params }) => {
   const { customer, customerState } = useSingleCustomer({ id })
   const { hasError, isLoading } = customerState
 
+  const handleClose = () => {
+    setShowModal(false)
+    navigate('/admin/clientes')
+  }
   if (isLoading) {
     return (
       <>
@@ -44,11 +48,6 @@ const CustomerDetail = ({ params }) => {
         />
       </>
     )
-  }
-
-  const handleClose = () => {
-    setShowModal(false)
-    navigate('/admin/clientes')
   }
 
   return (
