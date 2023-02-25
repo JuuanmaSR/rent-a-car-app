@@ -45,7 +45,7 @@ const CarDetail = ({ car }) => {
               <td>{car.airConditioner ? 'Si' : 'No'}</td>
             </tr>
             <tr>
-              <th>Caja de cambios</th>
+              <th>Transmisión</th>
               <td>{car.gearbox}</td>
             </tr>
           </tbody>

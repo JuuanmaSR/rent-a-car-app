@@ -61,20 +61,20 @@ const CustomerForm = ({ customer }) => {
   return (
     <>
       <div className="form-container">
-        <form className="customer-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="form-content" onSubmit={handleSubmit(onSubmit)}>
           {customer && (
             <input type="number" value={customer.id} {...register('id')} hidden={true} />
           )}
           <div className="input-container">
             <input
-              className={errors.firstName ? 'customer-input has-error' : 'customer-input'}
+              className={errors.firstName ? 'form-input has-error' : 'form-input'}
               type="text"
               placeholder="Nombre"
               {...register('firstName', {
                 required: 'Completa este campo',
                 maxLength: {
                   value: 40,
-                  message: 'Demasiados caracteres',
+                  message: 'El máximo de caracteres es 40',
                 },
               })}
             />
@@ -84,14 +84,14 @@ const CustomerForm = ({ customer }) => {
           </div>
           <div className="input-container">
             <input
-              className={errors.lastName ? 'customer-input has-error' : 'customer-input'}
+              className={errors.lastName ? 'form-input has-error' : 'form-input'}
               type="text"
               placeholder="Apellido"
               {...register('lastName', {
                 required: 'Completa este campo',
                 maxLength: {
                   value: 40,
-                  message: 'El campo apellido no debe ser mayor a 40 caracteres',
+                  message: 'El máximo de caracteres es 40',
                 },
               })}
             />
@@ -101,14 +101,14 @@ const CustomerForm = ({ customer }) => {
           </div>
           <div className="input-container">
             <input
-              className={errors.email ? 'customer-input has-error' : 'customer-input'}
+              className={errors.email ? 'form-input has-error' : 'form-input'}
               placeholder="Email"
               type="email"
               {...register('email', {
                 required: 'Completa es campo',
                 maxLength: {
                   value: 60,
-                  message: 'El campo email no debe ser mayor a 60 caracteres',
+                  message: 'El máximo de caracteres es 60',
                 },
               })}
             />
@@ -118,13 +118,13 @@ const CustomerForm = ({ customer }) => {
           </div>
           <div className="input-container">
             <input
-              className={errors.documentType ? 'customer-input has-error' : 'customer-input'}
+              className={errors.documentType ? 'form-input has-error' : 'form-input'}
               type="text"
               placeholder="Tipo de documento"
               list="document-type"
               {...register('documentType', {
                 required: 'Completa este campo',
-                maxLength: { value: 20, message: 'Demasiados caracteres' },
+                maxLength: { value: 20, message: 'El máximo de caracteres es 20' },
               })}
             />
             {errors.documentType && (
@@ -135,7 +135,7 @@ const CustomerForm = ({ customer }) => {
           </div>
           <div className="input-container">
             <input
-              className={errors.document ? 'customer-input has-error' : 'customer-input'}
+              className={errors.document ? 'form-input has-error' : 'form-input'}
               type="text"
               placeholder="Documento"
               {...register('document', { required: 'Completa este campo' })}
@@ -146,12 +146,12 @@ const CustomerForm = ({ customer }) => {
           </div>
           <div className="input-container">
             <input
-              className={errors.phoneNumber ? 'customer-input has-error' : 'customer-input'}
+              className={errors.phoneNumber ? 'form-input has-error' : 'form-input'}
               type="text"
               placeholder="Telefono"
               {...register('phoneNumber', {
                 required: 'Completa este campo',
-                maxLength: { value: 20, message: 'Demasiados caracteres' },
+                maxLength: { value: 20, message: 'El máximo de caracteres es 20' },
               })}
             />
             {errors.phoneNumber && (
@@ -163,14 +163,14 @@ const CustomerForm = ({ customer }) => {
 
           <div className="input-container">
             <input
-              className={errors.address ? 'customer-input has-error' : 'customer-input'}
+              className={errors.address ? 'form-input has-error' : 'form-input'}
               type="text"
               placeholder="Dirección"
               {...register('address', {
                 required: 'Completa este campo',
                 maxLength: {
                   value: 90,
-                  message: 'Demasiados caracteres',
+                  message: 'El máximo de caracteres es 90',
                 },
               })}
             />
@@ -181,7 +181,7 @@ const CustomerForm = ({ customer }) => {
 
           <div className="input-container">
             <input
-              className={errors.dateOfBirth ? 'customer-input has-error' : 'customer-input'}
+              className={errors.dateOfBirth ? 'form-input has-error' : 'form-input'}
               placeholder="Fecha de nacimiento"
               type="date"
               {...register('dateOfBirth', { required: 'Completa este campo' })}
@@ -195,14 +195,14 @@ const CustomerForm = ({ customer }) => {
 
           <div className="input-container">
             <input
-              className={errors.nationality ? 'customer-input has-error' : 'customer-input'}
+              className={errors.nationality ? 'form-input has-error' : 'form-input'}
               type="text"
               placeholder="Nacionalidad"
               {...register('nationality', {
                 required: 'Completa este campo',
                 maxLength: {
                   value: 35,
-                  message: 'Demasiados caracteres',
+                  message: 'El máximo de caracteres es 35',
                 },
               })}
             />

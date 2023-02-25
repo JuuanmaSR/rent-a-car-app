@@ -10,7 +10,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
 }
-.customer-form {
+.form-content {
   display: grid;
   grid-template-columns: 50vh 50vh;
   grid-auto-rows: 12vh;
@@ -18,7 +18,7 @@
   gap: 12px;
 }
 
-.customer-input {
+.form-input {
   border: 1px solid #d1d1d1;
   outline: none;
   background-color: var(--theme-body-bg);
@@ -26,11 +26,11 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: 0.18s ease-out;
 }
-.customer-input:hover {
+.form-input:hover {
   box-shadow: 0px 15px 20px rgba(14, 31, 29, 0.4);
   transform: translateY(-2px);
 }
-.customer-input:focus {
+.form-input:focus {
   color: #4b515d;
   border: 1px solid #b8b6b6;
   box-shadow: 0px 15px 20px rgba(14, 31, 29, 0.4);
@@ -82,13 +82,4 @@
 .has-error,
 .has-error:focus {
   border: 3px solid #f34747;
-}
-
-.has-message {
-  grid-template-columns: 2fr 0.8fr;
-  margin: 0 50px;
-  padding-right: 5vw;
-}
-.message-container {
-  margin: auto;
 }
