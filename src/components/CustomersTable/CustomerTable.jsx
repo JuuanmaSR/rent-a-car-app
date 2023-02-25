@@ -118,19 +118,19 @@ const CustomersTable = ({ customers, deleteCustomer, customerState }) => {
                     className="table-action-button info"
                     onClick={() => handleDetail(customer.id)}
                   >
-                    <i class="fi fi-br-info"></i>
+                    <i className="fi fi-br-info"></i>
                   </button>
                   <button
                     className="table-action-button edit"
                     onClick={() => handleEdit(customer.id)}
                   >
-                    <i class="fi fi-br-edit-alt"></i>
+                    <i className="fi fi-br-edit-alt"></i>
                   </button>
                   <button
                     className="table-action-button delete"
                     onClick={() => handleOpenConfirm(customer.id)}
                   >
-                    <i class="fi fi-br-trash"></i>
+                    <i className="fi fi-br-trash"></i>
                   </button>
                 </td>
               </tr>

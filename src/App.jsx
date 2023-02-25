@@ -20,6 +20,7 @@ import CarDetail from 'pages/CarDetail/CarDetail'
 import RentDashboard from 'pages/RentDashboard/RentDashboard'
 
 import './App.css'
+import CarAddForm from 'pages/CarAddForm/CarAddForm'
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/admin/clientes/detalle/:id" component={CustomerDetail} />
                 <Route component={CarDashboard} path="/admin/vehiculos" />
                 <Route path="/admin/vehiculos/detalle/:id" component={CarDetail} />
+                <Route path="/admin/vehiculos/agregar" component={CarAddForm} />
                 <Route component={RentDashboard} path="/admin/alquileres" />
               </Switch>
             </CustomerContextProvider>

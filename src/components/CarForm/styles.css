@@ -1,0 +1,23 @@
+.form-select {
+  padding: 16px 32px;
+  margin: 2vh;
+  outline: none;
+  background-color: var(--theme-body-bg);
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.18s ease-out;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+.form-select:hover {
+  box-shadow: 0px 15px 20px rgba(14, 31, 29, 0.4);
+  transform: translateY(-2px);
+}
+
+.form-select:focus {
+  color: #4b515d;
+  border: 1px solid #b8b6b6;
+  box-shadow: 0px 15px 20px rgba(14, 31, 29, 0.4);
+  transform: translateY(-3px);
+}

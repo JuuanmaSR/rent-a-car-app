@@ -22,7 +22,7 @@ const CarDashboard = () => {
       <Helmet>
         <title>Vehiculos | Rent a car</title>
       </Helmet>
-      <Dashboard title="Vehiculos" formRoute={'/'}>
+      <Dashboard title="Vehiculos" formRoute={'/admin/vehiculos/agregar'}>
         {cars ? <CarsTable cars={cars} /> : <Spinner />}
       </Dashboard>
     </>
