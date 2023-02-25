@@ -8,7 +8,9 @@ export function CustomerContextProvider({ children }) {
   const { jwt } = useContext(UserContext)
   const [customers, setCustomers] = useState()
   useEffect(() => {
-    getCustomers({ jwt }).then((customers) => setCustomers(customers))
+    getCustomers({ jwt })
+      .then((customers) => setCustomers(customers))
+      .catch((error) => console.error(error))
   }, [jwt])
 
   return <Context.Provider value={{ customers, setCustomers }}>{children}</Context.Provider>

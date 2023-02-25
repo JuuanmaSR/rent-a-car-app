@@ -9,9 +9,11 @@ export function CarContextProvider({ children }) {
   const [cars, setCars] = useState()
 
   useEffect(() => {
-    getCars({ jwt }).then((cars) => {
-      setCars(cars)
-    })
+    getCars({ jwt })
+      .then((cars) => {
+        setCars(cars)
+      })
+      .catch((error) => console.error(error))
   }, [jwt])
   return <Context.Provider value={{ cars, setCars }}>{children}</Context.Provider>
 }

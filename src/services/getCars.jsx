@@ -13,7 +13,6 @@ const getCars = async ({ jwt }) => {
     return cars
   } catch (error) {
     console.error(error)
-    return error
   }
 }
 
