@@ -7,6 +7,10 @@ const CarsTable = ({ cars }) => {
     navigate(`/admin/vehiculos/detalle/${id}`)
   }
 
+  const handleEdit = ({ id }) => {
+    navigate(`/admin/vehiculos/editar/${id}`)
+  }
+
   return (
     <>
       <table className="table-container">
@@ -34,13 +38,16 @@ const CarsTable = ({ cars }) => {
                     className="table-action-button info"
                     onClick={() => handleDetail({ id: car.id })}
                   >
-                    <i class="fi fi-br-info"></i>
+                    <i className="fi fi-br-info"></i>
                   </button>
-                  <button className="table-action-button edit">
-                    <i class="fi fi-br-edit-alt"></i>
+                  <button
+                    className="table-action-button edit"
+                    onClick={() => handleEdit({ id: car.id })}
+                  >
+                    <i className="fi fi-br-edit-alt"></i>
                   </button>
                   <button className="table-action-button delete">
-                    <i class="fi fi-br-trash"></i>
+                    <i className="fi fi-br-trash"></i>
                   </button>
                 </td>
               </tr>

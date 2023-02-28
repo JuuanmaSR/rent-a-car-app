@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'wouter'
 import ModalPortal from 'components/Modal/Modal'
@@ -7,15 +7,32 @@ import useCar from 'hooks/useCar'
 import './styles.css'
 
 const CarForm = ({ car }) => {
-  const { addCar, carState } = useCar()
+  const { addCar, updateCar, carState } = useCar()
   const { hasMessage, loading: isLoading, successfulAction } = carState
+  const [showModal, setShowModal] = useState(true)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setFocus,
-  } = useForm()
+  } = useForm({
+    defaultValues: useMemo(() => {
+      if (car) {
+        return {
+          model: car.model,
+          brand: car.brand,
+          year: car.year,
+          kilometers: car.kilometers,
+          color: car.color,
+          airConditioner: `${car.airConditioner}`,
+          gearbox: car.gearbox,
+          dailyPrice: car.dailyPrice,
+        }
+      }
+      return null
+    }),
+  })
 
   const [_, navigate] = useLocation()
 
@@ -31,9 +48,12 @@ const CarForm = ({ car }) => {
 
   const onSubmit = (values, event) => {
     event.preventDefault()
-    values.id ? console.log(values.id) : addCar({ car: values })
+    values.id ? updateCar({ car: values }) : addCar({ car: values })
   }
 
+  const handleClose = () => {
+    setShowModal(false)
+  }
   return (
     <>
       <div className="form-container">
@@ -118,8 +138,8 @@ const CarForm = ({ car }) => {
               <option value={''} hidden={true} disabled={true} selected={true}>
                 Aire acondicioado
               </option>
-              <option value={true}>Si</option>
-              <option value={false}>No</option>
+              <option value={'true'}>Si</option>
+              <option value={'false'}>No</option>
             </select>
             {errors.airConditioner && (
               <p className="error-message">
@@ -169,9 +189,7 @@ const CarForm = ({ car }) => {
       )}
       {hasMessage.message.failure && showModal && (
         <ModalPortal hasButton={true} onClose={handleClose}>
-          <Alert severity={'error'}>
-            <p>{hasMessage.message.failure}</p>
-          </Alert>
+          <Alert severity={'error'} message={hasMessage.message.failure} />
         </ModalPortal>
       )}
       {hasMessage.message.successful && (

@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import addCarService from 'services/addCar'
+import updateCarService from 'services/updateCar'
 import CarContext from 'context/CarContext'
 import UserContext from 'context/UserContext'
 
@@ -11,6 +12,7 @@ const useCar = () => {
     hasMessage: { value: false, message: { successful: false, failure: false, neutral: false } },
     successfulAction: false,
   })
+
   const addCar = ({ car }) => {
     setCarState({
       loading: true,
@@ -61,9 +63,69 @@ const useCar = () => {
       })
   }
 
+  const updateCar = ({ car }) => {
+    setCarState({
+      loading: true,
+      hasMessage: { value: true, message: { ...{}, neutral: 'Verificando datos...' } },
+      successfulAction: false,
+    })
+    updateCarService({ jwt, data: car })
+      .then((res) => {
+        if (res.statusCode == 400) {
+          setCarState({
+            loading: false,
+            hasMessage: {
+              value: true,
+              message: {
+                neutral: false,
+                successful: false,
+                failure: 'El vehículo no pudo ser actualizado',
+              },
+            },
+            successfulAction: false,
+          })
+        }
+        if (res.car) {
+          setCars((prevCars) => {
+            const updatedCars = prevCars.map((prevCar) => {
+              if (prevCar.id === res.car.id) {
+                return res.car
+              }
+              return prevCar
+            })
+            prevCars = updatedCars
+            return prevCars
+          })
+          setCarState({
+            loading: false,
+            hasMessage: {
+              value: true,
+              message: {
+                successful: 'El vehículo fue actualizado con exito',
+                ...{},
+              },
+            },
+            successfulAction: true,
+          })
+        }
+      })
+      .catch((error) => {
+        setCarState({
+          loading: false,
+          hasMessage: {
+            value: true,
+            message: { neutral: false, successful: false, failure: 'A ocurrido un error' },
+          },
+          successfulAction: false,
+        })
+        console.error(error)
+      })
+  }
+
   return {
     cars,
     addCar,
+    updateCar,
     carState,
   }
 }

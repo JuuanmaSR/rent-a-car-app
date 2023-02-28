@@ -134,6 +134,16 @@ const useCustomer = () => {
           })
         }
         if (res.customer) {
+          setCustomers((prevCustomers) => {
+            const updatedCustomers = prevCustomers.map((prevCustomer) => {
+              if (prevCustomer.id == res.customer.id) {
+                return res.customer
+              }
+              return prevCustomer
+            })
+            prevCustomers = updatedCustomers
+            return prevCustomers
+          })
           setCustomerState({
             loading: false,
             hasMessage: {
